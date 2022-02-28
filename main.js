@@ -2,6 +2,7 @@
 
 function createNewFilm (filmName, releaseYear, director, phase) {
     let film = {
+        id: id,
         filmName: filmName,
         releaseYear: releaseYear,
         director: director,
@@ -17,24 +18,91 @@ function createNewFilmFromPrompt() {
     let director = prompt("Enter the name of the director");
     let phase = prompt("Enter the MCU phase");
 
-    let newFilm = createNewFilm(filmName, Number(releaseYear), Number(phase));
+    let newFilm = createNewFilm(filmName, Number(releaseYear), director, Number(phase));
     return newFilm;
 }
 
-function addFilmToDatabase(database, film) {
-    console.log(`You are adding ${film.filmName}`);
-    database.push(film);
+function addFilmToDatabase(MCUdatabase, film) {
+    console.log(`You are adding ${film.filmName} to the database`);
+    MCUdatabase.push(film);
 }
 
-addFilmToDatabaseFromPrompt(database) {
+function addFilmToDatabaseFromPrompt(MCUdatabase) {
     let film = createNewFilmFromPrompt();
-    let wantToSaveFilm = confirm(`Are you sure you want to add: ${film.filmName}, ${film.releaseYear}, ${film.director}, ${film.phase}?`);
+    let wantsToSaveFilm = confirm(`Are you sure you want to add: ${film.filmName}, ${film.releaseYear}, ${film.director}, ${film.phase} ?`);
 
-    if (wantToSaveFilm) {
+    if (wantsToSaveFilm) {
         addFilmToDatabase(MCUdatabase, film);
     }
 }
 
-function renderFilm(film) {
-    let filmElement = document.getElementById("films")
+
+function removeFilmByID(films, id) {
+    for (let i = 0; i < films.length; i++) {
+        let film = films[i];
+
+        if (film.id == id) {
+            films.splice(i, 1);
+            return;
+        }
+    }
 }
+
+function renderFilm(film) {
+    let div = document.createElement("div");
+    div.classList.add("film");
+    div.id = film.id;
+    
+    div.innerHTML = `
+        <div>${film.id}</div>
+        <div>${film.filmName}</div>
+        <div>${film.releaseYear}</div>
+        <div>${film.director}</div>
+        <div>${film.phase}</div>
+        <button type="button">Remove</button>
+        `;
+
+    return div;
+}
+
+function renderFilms(films) {
+    let filmsElement = document.getElementById("films");
+    filmsElement.innerHTML = "";
+
+    for (let film of films) {
+        let filmElement = renderFilm(film);
+        filmsElement.appendChild(filmElement);
+    }
+
+    setRemoveFilmHandlers();
+}
+
+function onAddFilmClick() {
+    addFilmToDatabaseFromPrompt(MCUdatabase);
+    renderFilms(MCUdatabase);
+}
+
+function setAddFilmHandler() {
+    let button = document.getElementById("add");
+    button.addEventListener("click", onAddFilmClick);
+}
+
+function clickToRemoveFilm(event) {
+    let button = event.target;
+    let filmName = button.parentElement.firstElementChild.textContent;
+
+    removeFilmByName(MCUdatabase, filmName);
+
+    renderFilms(MCUdatabase);
+}
+
+function setRemoveFilmHandlers() {
+    let buttons = document.querySelectorAll(".film button");
+
+    for (let button of buttons) {
+        button.addEventListener("click", clickToRemoveFilm);
+    }
+}
+
+renderFilms(MCUdatabase);
+setAddFilmHandler();

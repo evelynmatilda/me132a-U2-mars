@@ -2,73 +2,73 @@
 
 let MCUdatabase = [
     {
-        Id: 1,
-        FilmName: "Iron Man",
-        ReleaseYear: 2008,
-        Director: "Jon Favreau",
-        Phase: 1
+        id: 1,
+        filmName: "Iron Man",
+        releaseYear: 2008,
+        director: "Jon Favreau",
+        phase: 1
     },
     {
-        Id: 2,
-        FilmName: "Captain America: The first avenger",
-        ReleaseYear: 2011,
-        Director: "Joe Johnston",
-        Phase: 1
+        id: 2,
+        filmName: "Captain America: The first avenger",
+        releaseYear: 2011,
+        director: "Joe Johnston",
+        phase: 1
     },
     {
-        Id: 3,
-        FilmName: "Marvel's The Avengers",
-        ReleaseYear: 2012,
-        Director: "Joss Whedon",
-        Phase: 1
+        id: 3,
+        filmName: "Marvel's The Avengers",
+        releaseYear: 2012,
+        director: "Joss Whedon",
+        phase: 1
     },
     {
-        Id: 4,
-        FilmName: "Black Panther",
-        ReleaseYear: 2018,
-        Director: "Ryan Coogler",
-        Phase: 3
+        id: 4,
+        filmName: "Black Panther",
+        releaseYear: 2018,
+        director: "Ryan Coogler",
+        phase: 3
     },
     {
-        Id: 5,
-        FilmName: "Ant-Man",
-        ReleaseYear: 2015,
-        Director: "Peyton Reed",
-        Phase: 2
+        id: 5,
+        filmName: "Ant-Man",
+        releaseYear: 2015,
+        director: "Peyton Reed",
+        phase: 2
     },
     {
-        Id: 6,
-        FilmName: "Thor: Ragnarok",
-        ReleaseYear: 2017,
-        Director: "Taika Waititi",
-        Phase: 3 
+        id: 6,
+        filmName: "Thor: Ragnarok",
+        releaseYear: 2017,
+        director: "Taika Waititi",
+        phase: 3 
     },
     {
-        Id: 7,
-        FilmName: "Guardians of the Galaxy",
-        ReleaseYear: 2014,
-        Director: "James Gunn",
-        Phase: 2
+        id: 7,
+        filmName: "Guardians of the Galaxy",
+        releaseYear: 2014,
+        director: "James Gunn",
+        phase: 2
     },
     {
-        Id: 8,
-        FilmName: "Doctor Strange",
-        ReleaseYear: 2016,
-        Director: "Scott Derrickson",
-        Phase: 3
+        id: 8,
+        filmName: "Doctor Strange",
+        releaseYear: 2016,
+        director: "Scott Derrickson",
+        phase: 3
     },
     {
-        Id: 9,
-        FilmName: "Black Widow",
-        ReleaseYear: 2021,
-        Director: "Cate Shortland",
-        Phase: 4
+        id: 9,
+        filmName: "Black Widow",
+        releaseYear: 2021,
+        director: "Cate Shortland",
+        phase: 4
     },
     {
-        Id: 10,
-        FilmName: "Spider-Man: No way home",
-        ReleaseYear: 2021,
-        Director: "Jon Watts",
-        Phase: 4
+        id: 10,
+        filmName: "Spider-Man: No way home",
+        releaseYear: 2021,
+        director: "Jon Watts",
+        phase: 4
     }
 ]

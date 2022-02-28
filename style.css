@@ -30,3 +30,8 @@ h2 {
     font-size: 30px;
     color: #36382E;
 }
+
+.film {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
