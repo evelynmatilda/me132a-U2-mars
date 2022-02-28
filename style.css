@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'AvengersFont';
+    src: url(./Fonts/AvengeroRegular-zvgl.ttf);
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 2px;
+    font-family: 'AvengersFont';
+    color: #E3170A;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    font-family: 'AvengersFont';
+    color: #36382E;
+}
+
+#headers {
+    display: flex;
+    gap: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    color: #36382E;
+}
