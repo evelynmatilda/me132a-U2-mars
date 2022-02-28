@@ -1,5 +1,6 @@
 "use strict";
 
+// Functions to create a new film and add it to the database
 function createNewFilm (filmName, releaseYear, director, phase) {
     let film = {
         id: id,
@@ -12,31 +13,34 @@ function createNewFilm (filmName, releaseYear, director, phase) {
     return film;
 }
 
-function createNewFilmFromPrompt() {
-    let filmName = prompt("Enter the name of the film");
-    let releaseYear = prompt("Enter the release year");
-    let director = prompt("Enter the name of the director");
-    let phase = prompt("Enter the MCU phase");
-
-    let newFilm = createNewFilm(filmName, Number(releaseYear), director, Number(phase));
-    return newFilm;
-}
-
 function addFilmToDatabase(MCUdatabase, film) {
     console.log(`You are adding ${film.filmName} to the database`);
     MCUdatabase.push(film);
 }
 
-function addFilmToDatabaseFromPrompt(MCUdatabase) {
-    let film = createNewFilmFromPrompt();
-    let wantsToSaveFilm = confirm(`Are you sure you want to add: ${film.filmName}, ${film.releaseYear}, ${film.director}, ${film.phase} ?`);
+function onAddFilmSubmit(event) {
+    event.preventDefault();
 
-    if (wantsToSaveFilm) {
-        addFilmToDatabase(MCUdatabase, film);
-    }
+    let filmName = document.getElementById("filmName").value;
+    let releaseYear = Number(document.getElementById("realeaseYear").value);
+    let director = document.getElementById("director").value;
+    let phase = Number(document.getElementById("phase").value);
+    
+    let film = createNewFilm(filmName, releaseYear, director, phase);
+    film.id = MCUdatabase[MCUdatabase.length - 1].id + 1;
+
+    addFilmToDatabase(MCUdatabase, film);
+    renderFilms(MCUdatabase);
+
+    let form = document.getElementById("add-film-form");
+    form.reset();
 }
 
-
+function setAddFilmHandler() {
+    let form = document.getElementById("add-film-form");
+    form.addEventListener("submit", onAddFilmSubmit);
+}
+// Functions to remove films
 function removeFilmByID(films, id) {
     for (let i = 0; i < films.length; i++) {
         let film = films[i];
@@ -48,6 +52,24 @@ function removeFilmByID(films, id) {
     }
 }
 
+function clickToRemoveFilm(event) {
+    let button = event.target;
+    let filmName = button.parentElement.firstElementChild.textContent;
+
+    removeFilmByID(MCUdatabase, filmName);
+
+    renderFilms(MCUdatabase);
+}
+
+function setRemoveFilmHandlers() {
+    let buttons = document.querySelectorAll(".film button");
+
+    for (let button of buttons) {
+        button.addEventListener("click", clickToRemoveFilm);
+    }
+}
+
+// Functiond to make our films visible on our website 
 function renderFilm(film) {
     let div = document.createElement("div");
     div.classList.add("film");
@@ -77,32 +99,65 @@ function renderFilms(films) {
     setRemoveFilmHandlers();
 }
 
-function onAddFilmClick() {
-    addFilmToDatabaseFromPrompt(MCUdatabase);
-    renderFilms(MCUdatabase);
-}
+// Here are my functions for filtering by different parameters
+function getFilmsByReleaseYear(films, releaseYear) {
+    let filmsByYear = [];
 
-function setAddFilmHandler() {
-    let button = document.getElementById("add");
-    button.addEventListener("click", onAddFilmClick);
-}
-
-function clickToRemoveFilm(event) {
-    let button = event.target;
-    let filmName = button.parentElement.firstElementChild.textContent;
-
-    removeFilmByName(MCUdatabase, filmName);
-
-    renderFilms(MCUdatabase);
-}
-
-function setRemoveFilmHandlers() {
-    let buttons = document.querySelectorAll(".film button");
-
-    for (let button of buttons) {
-        button.addEventListener("click", clickToRemoveFilm);
+    for (let film of films) {
+        if(film.realeaseYear == releaseYear) {
+            filmsByYear.push(film);
+        }
     }
+
+    return filmsByYear;
+}
+
+function filterByRealeaseYear(event) {
+    event.preventDefault();
+
+    let realeaseYear = document.getElementById("filter-year");
+    let filmsYear = getFilmsByReleaseYear(MCUdatabase, realeaseYear);
+
+    renderFilms(filmsYear);
+}
+
+function getFilmsByPhase (films, phase) {
+    let filmsByPhase = [];
+
+    for (let film of films) {
+        if(film.phase == phase) {
+            filmsByPhase.push(film);
+        }
+    }
+
+    return filmsByPhase;
+}
+
+function filterByPhase(event) {
+    event.preventDefault();
+
+    let phase = document.getElementById("filter-phase");
+    let filmsPhase = getFilmsByPhase(MCUdatabase, phase);
+
+    renderFilms(filmsPhase);
+}
+
+function clickToShowAll() {
+    document.getElementById("filter-year").value = "";
+    document.getElementById("filter-phase").value = "";
+    renderFilms(MCUdatabase);
+}
+
+function setFilterFilmHandlers() {
+    let yearFilter = document.getElementById("filter-by-releaseYear");
+    let phaseFilter = document.getElementById("filter-by-phase");
+    let showAll = document.getElementById("show-all");
+
+    yearFilter.addEventListener("submit", filterByRealeaseYear);
+    phaseFilter.addEventListener("submit", filterByPhase);
+    showAll.addEventListener("click", clickToShowAll);
 }
 
 renderFilms(MCUdatabase);
 setAddFilmHandler();
+setFilterFilmHandlers();

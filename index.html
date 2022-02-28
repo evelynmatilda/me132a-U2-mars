@@ -11,7 +11,7 @@
     <h1>Marvel Cinematic Universe</h1>
     <h2>The Database</h2>
 
-    <form action="add-film-form">
+    <form id="add-film-form">
         <input id="filmName" type="text" placeholder="Film Name">
         <input id="releaseYear" type="text" placeholder="Release Year">
         <input id="director" type="text" placeholder="Director">
@@ -20,17 +20,17 @@
     </form>
 
     <div id="filters">
-        <form action="">
-            <input type="text" name="" id="">
-            <button></button>
+        <form id="filter-by-phase">
+            <input id="filter-phase" type="number" placeholder="Filter by phase">
+            <button>Filter</button>
         </form>
 
-        <form action="">
-            <input type="text">
-            <button></button>
+        <form id="filter-by-releaseYear">
+            <input id="filter-year" type="number" placeholder="Filter by release year">
+            <button>Filter</button>
         </form>
 
-        <button>Show all films</button>
+        <button id="show-all" type="button">Show all films</button>
     </div>
 
     <div id="headers">

@@ -35,3 +35,9 @@ h2 {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
 }
+
+#filters {
+    display: flex;
+    margin-top: 5px;
+    gap: 5px;
+}
