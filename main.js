@@ -76,7 +76,12 @@ function clickToRemoveFilm(event) {
     let button = event.target;
     let id = button.parentElement.id;
 
-    removeFilmById(MCUdatabase, id);
+    if (confirm(`Vill du radera denna filmen?`) == true) {
+        removeFilmById(MCUdatabase, id);
+    } 
+    else {
+        return false;
+    }
 
     renderFilms(MCUdatabase);
 }
