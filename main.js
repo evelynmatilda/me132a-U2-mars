@@ -3,7 +3,6 @@
 // Functions to create a new film and add it to the database
 function createNewFilm (filmName, releaseYear, director, phase) {
     let film = {
-        id: id,
         filmName: filmName,
         releaseYear: releaseYear,
         director: director,
@@ -14,7 +13,6 @@ function createNewFilm (filmName, releaseYear, director, phase) {
 }
 
 function addFilmToDatabase(MCUdatabase, film) {
-    console.log(`You are adding ${film.filmName} to the database`);
     MCUdatabase.push(film);
 }
 
@@ -71,12 +69,11 @@ function setRemoveFilmHandlers() {
 
 // Functiond to make our films visible on our website 
 function renderFilm(film) {
-    let div = document.createElement("div");
-    div.classList.add("film");
-    div.id = film.id;
+    let li = document.createElement("li");
+    li.classList.add("film");
+    li.id = film.id;
     
-    div.innerHTML = `
-        <div>${film.id}</div>
+    li.innerHTML = `
         <div>${film.filmName}</div>
         <div>${film.releaseYear}</div>
         <div>${film.director}</div>
@@ -84,7 +81,7 @@ function renderFilm(film) {
         <button type="button">Remove</button>
         `;
 
-    return div;
+    return li;
 }
 
 function renderFilms(films) {
@@ -99,7 +96,7 @@ function renderFilms(films) {
     setRemoveFilmHandlers();
 }
 
-// Here are my functions for filtering by different parameters
+// Here are my functions for filtering by different things
 function getFilmsByReleaseYear(films, releaseYear) {
     let filmsByYear = [];
 
@@ -115,7 +112,7 @@ function getFilmsByReleaseYear(films, releaseYear) {
 function filterByRealeaseYear(event) {
     event.preventDefault();
 
-    let realeaseYear = document.getElementById("filter-year");
+    let realeaseYear = document.getElementById("filter-year").value;
     let filmsYear = getFilmsByReleaseYear(MCUdatabase, realeaseYear);
 
     renderFilms(filmsYear);
@@ -136,7 +133,7 @@ function getFilmsByPhase (films, phase) {
 function filterByPhase(event) {
     event.preventDefault();
 
-    let phase = document.getElementById("filter-phase");
+    let phase = document.getElementById("filter-phase").value;
     let filmsPhase = getFilmsByPhase(MCUdatabase, phase);
 
     renderFilms(filmsPhase);

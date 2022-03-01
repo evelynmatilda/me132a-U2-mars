@@ -13,9 +13,9 @@
 
     <form id="add-film-form">
         <input id="filmName" type="text" placeholder="Film Name">
-        <input id="releaseYear" type="text" placeholder="Release Year">
+        <input id="releaseYear" type="number" placeholder="Release Year">
         <input id="director" type="text" placeholder="Director">
-        <input id="phase" type="text" placeholder="MCU Phase">
+        <input id="phase" type="number" placeholder="MCU Phase">
         <button id="add" type="button">Add</button>
     </form>
 
@@ -33,15 +33,16 @@
         <button id="show-all" type="button">Show all films</button>
     </div>
 
-    <div id="headers">
-        <div>Id</div>
-        <div>Film Name</div>
-        <div>Release Year</div>
-        <div>Director</div>
-        <div>Phase</div>
-    </div>
+    <div id="container">
+        <div id="headers">
+            <div>Film Name</div>
+            <div>Release Year</div>
+            <div>Director</div>
+            <div>Phase</div>
+        </div>
 
-    <div id="films"></div>
+        <ol id="films" type="1"></ol>
+    </div>
     
 
     <script src="MCUdatabase.js"></script>
