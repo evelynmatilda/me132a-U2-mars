@@ -1,6 +1,8 @@
 "use strict";
 
-// Functions to create a new film and add it to the database
+// 1. Functions to create a new film and add it to the database
+
+// Function to create a new film
 function createNewFilm (filmName, releaseYear, director, phase) {
     let film = {
         filmName: filmName,
@@ -12,6 +14,7 @@ function createNewFilm (filmName, releaseYear, director, phase) {
     return film;
 }
 
+// Add the new film to the database
 function addFilmToDatabase(MCUdatabase, film) {
     let wantToSaveFilm = confirm(`Are you sure you want to add ${film.filmName} to the list?`);
 
@@ -21,6 +24,7 @@ function addFilmToDatabase(MCUdatabase, film) {
 
 }
 
+// What should happen when you push the "add" button
 function onAddFilmSubmit(event) {
     event.preventDefault();
 
@@ -56,13 +60,16 @@ function onAddFilmSubmit(event) {
     form.reset();
 }
 
+// The handler for the add button
 function setAddFilmHandler() {
     let form = document.getElementById("add-film-form");
     form.addEventListener("submit", onAddFilmSubmit);
 }
 
-// Functions to remove films
-function removeFilmById(films, id) {
+// 2. Functions to delete films
+
+// Delete a film by it's id
+function deleteFilmById(films, id) {
     for (let i = 0; i < films.length; i++) {
         let film = films[i];
 
@@ -73,12 +80,13 @@ function removeFilmById(films, id) {
     }
 }
 
-function clickToRemoveFilm(event) {
+// What happens when you click the delete button
+function clickToDeleteFilm(event) {
     let button = event.target;
     let id = button.parentElement.id;
 
     if (confirm(`Are you sure you want to delete this film?`) == true) {
-        removeFilmById(MCUdatabase, id);
+        deleteFilmById(MCUdatabase, id);
     } 
     else {
         return false;
@@ -87,15 +95,18 @@ function clickToRemoveFilm(event) {
     renderFilms(MCUdatabase);
 }
 
-function setRemoveFilmHandlers() {
+// The handler for the delete button
+function setDeleteFilmHandlers() {
     let buttons = document.querySelectorAll(".film button");
 
     for (let button of buttons) {
-        button.addEventListener("click", clickToRemoveFilm);
+        button.addEventListener("click", clickToDeleteFilm);
     }
 }
 
-// Functiond to make our films visible on our website 
+// 3. Functions to make the films visible on the website
+
+// Create an element and take the info from the object and fill the element with that info
 function renderFilm(film) {
     let li = document.createElement("li");
     li.classList.add("film");
@@ -106,12 +117,13 @@ function renderFilm(film) {
         <div>${film.releaseYear}</div>
         <div>${film.director}</div>
         <div>${film.phase}</div>
-        <button>Remove</button>
+        <button>Delete</button>
         `;
 
     return li;
 }
 
+// Appends the newly created element to an already existing HTML-element by using a loop to go through the entire array
 function renderFilms(films) {
     let filmsElement = document.getElementById("films");
     filmsElement.innerHTML = "";
@@ -121,10 +133,12 @@ function renderFilms(films) {
         filmsElement.appendChild(filmElement);
     }
 
-    setRemoveFilmHandlers();
+    setDeleteFilmHandlers();
 }
 
-// Here are my functions for filtering by different things
+// 4. Here are the functions for filtering by different criterias
+
+// Get films by their release year and adds it to an arrray so that only that will show when filtered on that
 function getFilmsByReleaseYear(films, releaseYear) {
     let filmsByYear = [];
 
@@ -137,6 +151,7 @@ function getFilmsByReleaseYear(films, releaseYear) {
     return filmsByYear;
 }
 
+// This works so that only the films with that specific year are shown
 function filterByReleaseYear(event) {
     event.preventDefault();
 
@@ -146,6 +161,7 @@ function filterByReleaseYear(event) {
     renderFilms(filmsYear);
 }
 
+// Get films by their MCU phase and adds it to an arrray so that only that will show when filtered on that
 function getFilmsByPhase (films, phase) {
     let filmsByPhase = [];
 
@@ -158,6 +174,7 @@ function getFilmsByPhase (films, phase) {
     return filmsByPhase;
 }
 
+// This works so that only the films with that specific phase are shown
 function filterByPhase(event) {
     event.preventDefault();
 
@@ -167,12 +184,14 @@ function filterByPhase(event) {
     renderFilms(filmsPhase);
 }
 
+// What happens when you click show all
 function clickToShowAll() {
     document.getElementById("filter-year").value = "";
     document.getElementById("filter-phase").value = "";
     renderFilms(MCUdatabase);
 }
 
+// The handlers for our filtering form and buttons
 function setFilterFilmHandlers() {
     let yearFilter = document.getElementById("filter-by-releaseYear");
     let phaseFilter = document.getElementById("filter-by-phase");
@@ -183,6 +202,7 @@ function setFilterFilmHandlers() {
     showAll.addEventListener("click", clickToShowAll);
 }
 
+// Initializes the website(direct code)
 renderFilms(MCUdatabase);
 setAddFilmHandler();
 setFilterFilmHandlers();
