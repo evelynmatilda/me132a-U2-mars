@@ -161,6 +161,8 @@ function filterByReleaseYear(event) {
     let filmsYear = getFilmsByReleaseYear(MCUdatabase, releaseYear);
 
     renderFilms(filmsYear);
+
+    document.getElementById("filter-phase").value = "";
 }
 
 // Get films by their MCU phase and adds it to an arrray so that only that will show when filtered on that
@@ -184,6 +186,8 @@ function filterByPhase(event) {
     let filmsPhase = getFilmsByPhase(MCUdatabase, phase);
 
     renderFilms(filmsPhase);
+
+    document.getElementById("filter-year").value = "";
 }
 
 // What happens when you click show all
