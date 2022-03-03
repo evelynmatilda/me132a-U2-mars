@@ -1,5 +1,6 @@
 body {
     background-color: #eee6dd;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,11 +23,13 @@ body {
 h1 {
     margin-top: 20px;
     margin-bottom: 2px;
+
     color: #E3170A;
 }
 
 h2 {
     margin-top: 5px;
+
     color: #36382E;
 }
 
@@ -39,6 +42,7 @@ h2 {
     border-radius: 10%;
     border-width: 1%;
     border-color: #29335C;
+
     background-color: #E3170A;
     color: #eee6dd;
 }
@@ -54,6 +58,7 @@ h2 {
     border-radius: 10%;
     border-width: 1%;
     border-color: #E3170A;
+    
     background-color: #94B7F0;
     color: #29335C;
 }
