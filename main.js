@@ -60,6 +60,7 @@ function setAddFilmHandler() {
     let form = document.getElementById("add-film-form");
     form.addEventListener("submit", onAddFilmSubmit);
 }
+
 // Functions to remove films
 function removeFilmById(films, id) {
     for (let i = 0; i < films.length; i++) {
@@ -76,7 +77,7 @@ function clickToRemoveFilm(event) {
     let button = event.target;
     let id = button.parentElement.id;
 
-    if (confirm(`Vill du radera denna filmen?`) == true) {
+    if (confirm(`Are you sure you want to delete this film?`) == true) {
         removeFilmById(MCUdatabase, id);
     } 
     else {

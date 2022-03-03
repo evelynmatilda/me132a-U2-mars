@@ -1,6 +1,9 @@
 body {
-    background-color: #DCCCBB;
-    
+    background-color: #eee6dd;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 @font-face {
@@ -33,6 +36,11 @@ h2 {
 
 #form-button {
     height: 35px;
+    border-radius: 10%;
+    border-width: 1%;
+    border-color: #29335C;
+    background-color: #E3170A;
+    color: #eee6dd;
 }
 
 #filters {
@@ -40,6 +48,19 @@ h2 {
     margin-top: 5px;
     gap: 5px;
     padding-bottom: 5px;
+}
+
+#filters button {
+    border-radius: 10%;
+    border-width: 1%;
+    border-color: #E3170A;
+    background-color: #94B7F0;
+    color: #29335C;
+}
+
+#show-all {
+    border-radius: 10%;
+    border-width: 1%;
 }
 
 #headers {
@@ -74,8 +95,6 @@ h2 {
     width: 900px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     padding-top: 5px;
 }
 
@@ -100,7 +119,8 @@ h2 {
 
 .film button {
     width: 80px;
-    color: white;
+    border-radius: 10%;
+    color: #eee6dd;
     background-color: #E3170A;
     border-color: #29335C;
 }
